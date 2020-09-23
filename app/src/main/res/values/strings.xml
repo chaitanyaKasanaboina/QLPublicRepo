@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">QLPublicRepos</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="logoff_button_text">Log off</string>
+    <string name="invalid_username">Username must be a valid email</string>
+    <string name="invalid_password">Password must be at least 9 characters long with at least 1 uppercase character, 1 lowercase character and 1 number</string>
+    <string name="repo_name_label">"Name: "</string>
+    <string name="repo_last_updated">"Last updated: "</string>
+    <string name="repo_description">"Description: "</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="sign_in_or_register">Sign in or Register</string>
+    <string name="help">help</string>
+    <string name="username_password_help">Username and Password rules</string>
+    <string name="ok">OK</string>
+
+</resources>
