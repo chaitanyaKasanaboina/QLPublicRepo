@@ -10,12 +10,16 @@ import ql.com.publicrepos.model.RepoDetails
 import ql.com.publicrepos.service.RepoService
 import javax.inject.Inject
 
-class RepoViewModel @Inject constructor(repoService: RepoService) : ViewModel() {
+class RepoViewModel @Inject constructor(private val repoService: RepoService) : ViewModel() {
     val repoDetailsLiveData = MutableLiveData<List<RepoDetails>>()
     private val repoDetailsErrorData = MutableLiveData<String>()
     private val compositeDisposable = CompositeDisposable()
 
     init {
+        getRepoDetailsList()
+    }
+
+    private fun getRepoDetailsList() {
         compositeDisposable.add(
             repoService.getPublicRepoDetails()
                 .observeOn(AndroidSchedulers.mainThread())
