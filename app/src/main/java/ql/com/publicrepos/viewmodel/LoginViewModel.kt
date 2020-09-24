@@ -18,6 +18,7 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     val loginSuccess = MutableLiveData<Boolean>()
 
     fun login() {
+        //place holder method to do some business logic before logging the user in
         loginSuccess.postValue(true)
     }
 

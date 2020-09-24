@@ -21,7 +21,7 @@ import ql.com.publicrepos.viewmodel.ViewModelFactory
 import javax.inject.Inject
 
 
-class RepoActivity : AppCompatActivity(), onRepoClickListener {
+class RepoActivity : AppCompatActivity(), OnItemClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory

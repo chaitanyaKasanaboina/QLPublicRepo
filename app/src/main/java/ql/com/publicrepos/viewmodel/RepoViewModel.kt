@@ -8,6 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ql.com.publicrepos.model.RepoDetails
 import ql.com.publicrepos.service.RepoService
+import ql.com.publicrepos.util.Constants
 import javax.inject.Inject
 
 class RepoViewModel @Inject constructor(private val repoService: RepoService) : ViewModel() {
@@ -26,8 +27,8 @@ class RepoViewModel @Inject constructor(private val repoService: RepoService) : 
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({ t -> repoDetailsLiveData.postValue(t) },
                     { throwable ->
-                        repoDetailsErrorData.postValue("Error from service")
-                        Log.e("error", throwable.toString())
+                        repoDetailsErrorData.postValue(Constants.ERROR_FROM_SERVICE)
+                        Log.e(Constants.ERROR_FROM_SERVICE, throwable.toString())
                     })
         )
     }

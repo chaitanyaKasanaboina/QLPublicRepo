@@ -6,7 +6,6 @@ import dagger.Module;
 import dagger.Provides;
 import ql.com.publicrepos.network.RetrofitBuilder;
 import ql.com.publicrepos.service.RepoService;
-import ql.com.publicrepos.viewmodel.RepoViewModel;
 
 @Module
 public class RepoServiceModule {

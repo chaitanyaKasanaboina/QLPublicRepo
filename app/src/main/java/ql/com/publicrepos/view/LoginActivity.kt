@@ -1,13 +1,11 @@
 package ql.com.publicrepos.view
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +21,6 @@ import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -35,13 +32,16 @@ class LoginActivity : AppCompatActivity() {
             showAssistancePopUp()
         }
         val sharedPreferences = getSharedPreferences(Constants.ENVIRONMENT, Context.MODE_PRIVATE)
-        if (sharedPreferences?.getString(Constants.USERNAME, Constants.BLANK)?.isNotBlank() == true) {
+        if (sharedPreferences?.getString(Constants.USERNAME, Constants.BLANK)
+                ?.isNotBlank() == true
+        ) {
             username.setText(sharedPreferences.getString(Constants.USERNAME, Constants.BLANK))
             password.setText(sharedPreferences.getString(Constants.PASSWORD, Constants.BLANK))
             login.isEnabled = true
         }
 
-        val loginViewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
+        val loginViewModel =
+            ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -91,9 +91,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             login.setOnClickListener {
-                sharedPreferences.edit().putString(Constants.USERNAME, username.text.toString()).apply()
-                sharedPreferences.edit().putString(Constants.PASSWORD, password.text.toString()).apply()
-                loginViewModel.login()
+                sharedPreferences.edit().putString(Constants.USERNAME, username.text.toString())
+                    .apply()
+                sharedPreferences.edit().putString(Constants.PASSWORD, password.text.toString())
+                    .apply()
+                loginViewModel.run { login() }
             }
         }
     }
@@ -103,9 +105,11 @@ class LoginActivity : AppCompatActivity() {
         dialogBuilder.setMessage(getString(R.string.invalid_username) + "\n" + getString(R.string.invalid_password))
             .setCancelable(false)
             // positive button text and action
-            .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, id ->
+            .setPositiveButton(
+                getString(R.string.ok)
+            ) { dialog, _ ->
                 dialog.cancel()
-            })
+            }
         val alert = dialogBuilder.create()
         // set title for alert dialog box
         alert.setTitle(getString(R.string.username_password_help))

@@ -8,6 +8,7 @@ class Constants {
         const val USERNAME = "USERNAME"
         const val PASSWORD = "PASSWORD"
         const val BLANK = ""
+        const val ERROR_FROM_SERVICE = "Error"
         const val PASSWORD_PATTERN = "^" +
                 "(?=.*[0-9])" +         //at least 1 digit
                 "(?=.*[a-z])" +         //at least 1 lower case letter

@@ -9,11 +9,14 @@ import kotlinx.android.synthetic.main.repo_list_item.view.*
 import ql.com.publicrepos.R
 import ql.com.publicrepos.model.RepoDetails
 import ql.com.publicrepos.util.Constants
-import ql.com.publicrepos.view.onRepoClickListener
+import ql.com.publicrepos.view.OnItemClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RepoRecyclerViewAdapter(private val repoList: List<RepoDetails>, private val repoClickListener: onRepoClickListener) :
+class RepoRecyclerViewAdapter(
+    private val repoList: List<RepoDetails>,
+    private val itemClickListener: OnItemClickListener
+) :
     RecyclerView.Adapter<RepoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
@@ -27,11 +30,17 @@ class RepoRecyclerViewAdapter(private val repoList: List<RepoDetails>, private v
     }
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
-        holder.repoName.text = holder.itemView.context.getString(R.string.repo_name_label, repoList[position].name)
-        holder.repoLastUpdatedTime.text = holder.itemView.context.getString(R.string.repo_last_updated, repoList[position].updatedAt?.let { formatTime(it) })
-        holder.repoDescription.text = holder.itemView.context.getString(R.string.repo_description, repoList[position].description)
+        holder.repoName.text =
+            holder.itemView.context.getString(R.string.repo_name_label, repoList[position].name)
+        holder.repoLastUpdatedTime.text = holder.itemView.context.getString(
+            R.string.repo_last_updated,
+            repoList[position].updatedAt?.let { formatTime(it) })
+        holder.repoDescription.text = holder.itemView.context.getString(
+            R.string.repo_description,
+            repoList[position].description
+        )
         holder.itemView.setOnClickListener {
-            repoClickListener.onItemClick(repoList[position])
+            itemClickListener.onItemClick(repoList[position])
         }
     }
 
